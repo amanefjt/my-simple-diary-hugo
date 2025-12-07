@@ -1,1 +1,8 @@
+baseURL = "https://your-diary-name.com/" # サイト公開後に、実際のURLに修正してください
+languageCode = "ja-jp"
+title = "シンプル・Markdown日記"
+theme = "" # カスタムレイアウトを使用するため空に
+disableKinds = ["taxonomy", "term"] # タグ・カテゴリを無効化
 
+[params]
+  description = "GitHubだけで更新できる静的日記サイト"
