@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ block "title" . }}{{ .Site.Title }}{{ end }}</title>
+    <!-- Tailwind CSSとカスタムCSSを読み込み -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body class="antialiased">
+    <div class="container-main space-y-8">
+        
+        <!-- ヘッダーエリア -->
+        <header class="text-center space-y-2 mb-8 p-4 glass-card rounded-xl">
+            <a href="/" class="no-underline text-gray-800">
+                <h1 class="text-3xl font-light tracking-tight">{{ .Site.Title }}</h1>
+            </a>
+            <p class="text-xs text-gray-500 font-mono">{{ .Site.Params.description }}</p>
+        </header>
+        
+        <!-- メインコンテンツを挿入するブロック -->
+        <main>
+            {{ block "main" . }}
+            {{ end }}
+        </main>
+
+        <!-- フッターエリア -->
+        <footer class="text-center text-xs text-gray-400 pt-8 mt-12 border-t">
+            &copy; {{ now.Year }} {{ .Site.Title }}.
+        </footer>
+    </div>
+</body>
+</html>
+
+
+### B. 個別ページテンプレート（`single.html`）
+
+Markdownファイル一つ一つ（日記エントリー）の表示方法を定義します。
+
+**ファイルパス:** `layouts/_default/single.html`
+
+
+http://googleusercontent.com/immersive_entry_chip/2
+
+### C. トップページテンプレート（`index.html`）
+
+すべての投稿をリスト形式で表示するページです。
+
+**ファイルパス:** `layouts/index.html`
+
+
+http://googleusercontent.com/immersive_entry_chip/3
+
+## ステップ5：最初のコンテンツの作成
+
+`content/posts` フォルダ内に、最初のMarkdownファイルを作成します。
+
+**ファイルパス:** `content/posts/2024-12-07-ssg-start.md`
+
+
+http://googleusercontent.com/immersive_entry_chip/4
+
+## ステップ6：Cloudflare Pagesでの公開設定
+
+リポジトリに上記のファイルが揃ったら、Cloudflare Pagesでデプロイを設定します。
+
+1.  Cloudflare Pagesのダッシュボードで、GitHubリポジトリを連携します。
+2.  **ビルド設定**で、以下の3点を指定します。
+    * **Framework preset (フレームワークのプリセット):** `Hugo` を選択
+    * **Build command (ビルドコマンド):** `hugo`
+    * **Build output directory (出力ディレクトリ):** `public`
+
+3.  「デプロイ」を実行すると、自動的にサイトが構築され、URLが発行されます。
+
+## 完了：日々の更新フロー
+
+サイトが公開されたら、以降の更新は以下の手順で完結します。
+
+1.  **GitHubにアクセス**し、リポジトリの `content/posts` フォルダへ移動。
+2.  「Add file」で新しいMarkdownファイルを作成するか、既存のファイルを編集します。
+3.  ファイルの記述形式は常に以下の通りです。
+    ```markdown
+    ---
+    title: "その日のタイトル"
+    date: YYYY-MM-DDTXX:XX:XX+09:00
+    ---
+    本文
+    4.  コミット（保存）すると、Cloudflare Pagesが自動で検知し、サイトを更新します。
+
+これで、ローカル環境に依存しない、シンプルな日記サイトの運用が可能です。
